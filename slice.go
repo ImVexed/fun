@@ -124,6 +124,16 @@ func DistinctBy[T any, K comparable](s []T, fn func(T) K) []T {
 	return ret
 }
 
+// Remove returns a slice containing all elements except e
+func Remove[T comparable](s []T, e T) []T {
+	for i := len(s)-1; i >= 0; i-- {
+		if s[i] == e {
+			s = append(s[:i], s[i+1:]...)
+		}
+	}
+	return s
+}
+
 // Drop returns a slice containing all elements except the first n
 func Drop[T any](s []T, n int) []T {
 	if n >= len(s) {
